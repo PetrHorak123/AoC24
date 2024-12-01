@@ -18,9 +18,9 @@ int similarityScoresSum = 0;
 Dictionary<int, int> rightDistinctNumsCounts = right.GroupBy(x => x).ToDictionary( x => x.Key, x => x.Count());
 for (int i = 0; i < left.Count; i++)
 {
-    if (rightDistinctNumsCounts.ContainsKey(left[i]))
+    if (rightDistinctNumsCounts.TryGetValue(left[i], out int value))
     {
-        similarityScoresSum += left[i] * rightDistinctNumsCounts[left[i]];
+        similarityScoresSum += left[i] * value;
     }
 }
 Console.WriteLine(similarityScoresSum);
